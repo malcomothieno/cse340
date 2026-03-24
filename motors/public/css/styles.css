@@ -1,0 +1,742 @@
+/* =============================================
+   CSE MOTORS — MAIN STYLESHEET
+   Mobile-first | Accessible | WCAG AA Compliant
+   Matches assignment reference design
+   ============================================= */
+
+/* ──────────────────────────────────────────────
+   1. CSS CUSTOM PROPERTIES
+────────────────────────────────────────────── */
+:root {
+  /* Colors matching reference screenshot */
+  --clr-white:       #ffffff;
+  --clr-bg:          #ffffff;
+  --clr-nav-bg:      #333333;
+  --clr-nav-text:    #ffffff;
+  --clr-teal:        #00bcd4;
+  --clr-teal-dark:   #0097a7;
+  --clr-heading:     #222222;
+  --clr-text:        #222222;
+  --clr-footer-bg:   #333333;
+  --clr-footer-text: #ffffff;
+  --clr-border:      #cccccc;
+  --clr-account:     #555555;
+
+  /* Typography */
+  --ff-body: Arial, Helvetica, sans-serif;
+
+  /* Spacing */
+  --sp-1:  0.25rem;
+  --sp-2:  0.5rem;
+  --sp-3:  0.75rem;
+  --sp-4:  1rem;
+  --sp-5:  1.25rem;
+  --sp-6:  1.5rem;
+  --sp-8:  2rem;
+  --sp-10: 2.5rem;
+  --sp-12: 3rem;
+
+  --max-width: 900px;
+  --border-radius: 4px;
+  --transition: 0.2s ease;
+}
+
+/* ──────────────────────────────────────────────
+   2. RESET & BASE
+────────────────────────────────────────────── */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 100%;
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--ff-body);
+  font-size: 1rem;
+  line-height: 1.5;
+  color: var(--clr-text);
+  background-color: #f0f0f0;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+a {
+  color: var(--clr-teal);
+  text-decoration: none;
+  transition: color var(--transition);
+}
+
+a:hover,
+a:focus {
+  color: var(--clr-teal-dark);
+  text-decoration: underline;
+}
+
+ul {
+  list-style: none;
+}
+
+/* ──────────────────────────────────────────────
+   3. ACCESSIBILITY
+────────────────────────────────────────────── */
+.skip-link {
+  position: absolute;
+  top: -100%;
+  left: 1rem;
+  z-index: 9999;
+  background: var(--clr-teal);
+  color: var(--clr-white);
+  font-weight: bold;
+  padding: 0.5rem 1.5rem;
+  border-radius: var(--border-radius);
+  text-decoration: none;
+}
+
+.skip-link:focus {
+  top: 1rem;
+}
+
+:focus-visible {
+  outline: 3px solid var(--clr-teal);
+  outline-offset: 3px;
+}
+
+/* ──────────────────────────────────────────────
+   4. PAGE WRAPPER — centered, max-width card
+────────────────────────────────────────────── */
+#wrapper {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  max-width: var(--max-width);
+  margin-inline: auto;
+  background-color: var(--clr-bg);
+  border: 1px solid var(--clr-border);
+  box-shadow: 0 0 12px rgba(0,0,0,0.1);
+}
+
+#wrapper > main {
+  flex: 1;
+}
+
+/* ──────────────────────────────────────────────
+   5. HEADER
+────────────────────────────────────────────── */
+#top-header {
+  background-color: var(--clr-white);
+  padding: var(--sp-4) var(--sp-6);
+}
+
+.header-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.brand-link {
+  text-decoration: none;
+  color: var(--clr-heading);
+}
+
+.brand-name {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: var(--clr-heading);
+}
+
+/* Hide elements not in reference design */
+.brand-tagline,
+.brand-icon {
+  display: none;
+}
+
+.header-actions a {
+  font-size: 0.82rem;
+  color: var(--clr-account);
+  text-decoration: none;
+  font-variant: small-caps;
+  letter-spacing: 0.04em;
+}
+
+.header-actions a:hover,
+.header-actions a:focus {
+  color: var(--clr-teal);
+  text-decoration: underline;
+}
+
+/* ──────────────────────────────────────────────
+   6. NAVIGATION
+────────────────────────────────────────────── */
+#main-navigation {
+  background-color: var(--clr-nav-bg);
+}
+
+/* Always show full nav — matches reference bar */
+.nav-toggle {
+  display: none;
+}
+
+.nav-menu {
+  display: block;
+}
+
+#main-nav {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  padding: 0;
+}
+
+#main-nav li a {
+  display: block;
+  padding: var(--sp-3) var(--sp-5);
+  color: var(--clr-nav-text);
+  font-size: 0.95rem;
+  text-decoration: none;
+  transition: background-color var(--transition);
+}
+
+#main-nav li a:hover,
+#main-nav li a:focus {
+  background-color: rgba(255,255,255,0.15);
+  text-decoration: none;
+}
+
+/* ──────────────────────────────────────────────
+   7. MAIN CONTENT — HOME PAGE
+────────────────────────────────────────────── */
+#home-wrapper {
+  padding: var(--sp-6);
+}
+
+#home-heading {
+  font-size: 1.45rem;
+  font-weight: bold;
+  color: var(--clr-heading);
+  margin-bottom: var(--sp-5);
+}
+
+/* ──────────────────────────────────────────────
+   8. HERO — mobile: stacked, content then image
+────────────────────────────────────────────── */
+#hero {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-4);
+  margin-bottom: var(--sp-8);
+}
+
+#hero-content {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-3);
+}
+
+#hero-content h2 {
+  font-size: 1.4rem;
+  font-weight: bold;
+  color: var(--clr-teal);
+  margin: 0;
+}
+
+#hero-features {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-1);
+}
+
+#hero-features li {
+  color: var(--clr-teal);
+  font-size: 0.95rem;
+}
+
+.btn-own {
+  display: inline-block;
+  background-color: var(--clr-teal);
+  color: var(--clr-white);
+  font-size: 0.95rem;
+  font-weight: bold;
+  padding: var(--sp-3) var(--sp-6);
+  border-radius: var(--border-radius);
+  text-decoration: none;
+  margin-top: var(--sp-2);
+  align-self: flex-start;
+  transition: background-color var(--transition);
+  border: none;
+  cursor: pointer;
+}
+
+.btn-own:hover,
+.btn-own:focus {
+  background-color: var(--clr-teal-dark);
+  color: var(--clr-white);
+  text-decoration: none;
+}
+
+#hero-image img {
+  width: 100%;
+  height: auto;
+}
+
+/* ──────────────────────────────────────────────
+   9. HOME BOTTOM ROW — mobile: stacked
+────────────────────────────────────────────── */
+#home-bottom {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-8);
+}
+
+/* ──────────────────────────────────────────────
+   10. UPGRADES
+────────────────────────────────────────────── */
+#upgrades h2,
+#reviews h2 {
+  font-size: 1.1rem;
+  font-weight: bold;
+  color: var(--clr-heading);
+  margin-bottom: var(--sp-4);
+}
+
+#upgrades-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--sp-3);
+}
+
+.upgrade-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--sp-2);
+  background-color: var(--clr-teal);
+  border-radius: var(--border-radius);
+  padding: var(--sp-4) var(--sp-2);
+  text-decoration: none;
+  transition: background-color var(--transition), transform var(--transition);
+}
+
+.upgrade-card:hover,
+.upgrade-card:focus {
+  background-color: var(--clr-teal-dark);
+  transform: translateY(-2px);
+  text-decoration: none;
+}
+
+.upgrade-card img {
+  width: 80px;
+  height: 80px;
+  object-fit: contain;
+  background: rgba(255,255,255,0.25);
+  border-radius: 4px;
+  padding: 4px;
+}
+
+.upgrade-card span {
+  font-size: 0.82rem;
+  font-weight: bold;
+  color: var(--clr-white);
+  text-align: center;
+}
+
+/* ──────────────────────────────────────────────
+   11. REVIEWS
+────────────────────────────────────────────── */
+#reviews-list {
+  list-style: disc;
+  padding-left: var(--sp-5);
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-4);
+}
+
+#reviews-list li {
+  font-size: 0.92rem;
+  color: var(--clr-text);
+  line-height: 1.45;
+}
+
+/* ──────────────────────────────────────────────
+   12. FOOTER
+────────────────────────────────────────────── */
+#site-footer {
+  background-color: var(--clr-footer-bg);
+  color: var(--clr-footer-text);
+  padding: var(--sp-4) var(--sp-6);
+  text-align: center;
+}
+
+.footer-inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--sp-2);
+}
+
+/* Hide elements not visible in reference footer */
+.brand-icon-sm,
+.footer-brand-name,
+.footer-links {
+  display: none;
+}
+
+.footer-copy {
+  font-size: 0.85rem;
+  color: var(--clr-footer-text);
+}
+
+/* ──────────────────────────────────────────────
+   13. ERROR PAGE
+────────────────────────────────────────────── */
+.error-page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--sp-5);
+  padding: var(--sp-12) var(--sp-6);
+  text-align: center;
+  min-height: 50vh;
+}
+
+.error-code {
+  font-size: 4rem;
+  font-weight: bold;
+  color: var(--clr-heading);
+}
+
+.error-message {
+  font-size: 1.1rem;
+  color: #555;
+}
+
+/* ──────────────────────────────────────────────
+   14. MEDIA QUERY — LARGER SCREENS (≥ 600px)
+   Hero side-by-side, bottom two columns
+────────────────────────────────────────────── */
+@media screen and (min-width: 600px) {
+
+  /* Hero: content left, image right */
+  #hero {
+    flex-direction: row;
+    align-items: center;
+    gap: var(--sp-6);
+  }
+
+  #hero-content {
+    flex: 0 0 200px;
+  }
+
+  #hero-image {
+    flex: 1 1 auto;
+  }
+
+  /* Bottom section: two equal columns */
+  #home-bottom {
+    flex-direction: row;
+    align-items: flex-start;
+    gap: var(--sp-8);
+  }
+
+  #upgrades {
+    flex: 0 0 46%;
+  }
+
+  #reviews {
+    flex: 1 1 auto;
+  }
+
+}
+
+/* ──────────────────────────────────────────────
+   15. MEDIA QUERY — WIDE SCREENS (≥ 800px)
+────────────────────────────────────────────── */
+@media screen and (min-width: 800px) {
+
+  #home-wrapper {
+    padding: var(--sp-8);
+  }
+
+  #home-heading {
+    font-size: 1.65rem;
+  }
+
+  #hero-content {
+    flex: 0 0 220px;
+  }
+
+  #hero-content h2 {
+    font-size: 1.6rem;
+  }
+
+  .upgrade-card img {
+    width: 100px;
+    height: 100px;
+  }
+
+  .upgrade-card span {
+    font-size: 0.9rem;
+  }
+
+}
+
+/* ══════════════════════════════════════════════
+   WEEK 3 ADDITIONS
+   Classification Grid | Vehicle Detail | Errors
+   ══════════════════════════════════════════════ */
+
+/* ──────────────────────────────────────────────
+   16. CLASSIFICATION GRID — #inv-display
+────────────────────────────────────────────── */
+#inv-display {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--sp-5);
+  list-style: none;
+  padding: var(--sp-6);
+  margin: 0;
+}
+
+#inv-display li {
+  background: var(--clr-white);
+  border: 1px solid var(--clr-border);
+  border-radius: 6px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  transition: box-shadow 0.2s ease, transform 0.2s ease;
+}
+
+#inv-display li:hover {
+  box-shadow: 0 4px 16px rgba(0,0,0,0.13);
+  transform: translateY(-3px);
+}
+
+#inv-display li a img {
+  width: 100%;
+  height: 160px;
+  object-fit: cover;
+  display: block;
+}
+
+#inv-display li a {
+  text-decoration: none;
+  display: block;
+}
+
+#inv-display .namePrice {
+  padding: var(--sp-3) var(--sp-4);
+}
+
+#inv-display .namePrice hr {
+  border: none;
+  border-top: 1px solid var(--clr-border);
+  margin-bottom: var(--sp-3);
+}
+
+#inv-display .namePrice h2 {
+  font-size: 1rem;
+  font-weight: bold;
+  margin-bottom: var(--sp-2);
+}
+
+#inv-display .namePrice h2 a {
+  color: var(--clr-heading);
+  text-decoration: none;
+}
+
+#inv-display .namePrice h2 a:hover {
+  color: var(--clr-teal);
+  text-decoration: underline;
+}
+
+#inv-display .namePrice span {
+  font-size: 0.95rem;
+  color: var(--clr-teal-dark);
+  font-weight: bold;
+}
+
+.notice {
+  padding: var(--sp-6);
+  color: #c0392b;
+  font-size: 1rem;
+}
+
+/* ──────────────────────────────────────────────
+   17. VEHICLE DETAIL — #vehicle-detail
+   Mobile: stacked | Large: side-by-side
+────────────────────────────────────────────── */
+#detail-heading {
+  font-size: 1.35rem;
+  font-weight: bold;
+  color: var(--clr-heading);
+  padding: var(--sp-4) var(--sp-6) 0;
+}
+
+#vehicle-detail {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-5);
+  padding: var(--sp-5) var(--sp-6) var(--sp-8);
+}
+
+#vehicle-image img {
+  width: 100%;
+  height: auto;
+  border-radius: 6px;
+  display: block;
+  object-fit: cover;
+}
+
+#vehicle-info h2 {
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: var(--clr-heading);
+  margin-bottom: var(--sp-4);
+}
+
+#vehicle-specs {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-3);
+  margin-bottom: var(--sp-5);
+}
+
+#vehicle-specs li {
+  font-size: 0.95rem;
+  color: var(--clr-text);
+  border-bottom: 1px solid var(--clr-border);
+  padding-bottom: var(--sp-2);
+  line-height: 1.5;
+}
+
+#vehicle-specs li:last-child {
+  border-bottom: none;
+}
+
+.spec-label {
+  font-weight: bold;
+  color: var(--clr-heading);
+  margin-right: var(--sp-2);
+}
+
+.spec-price {
+  color: var(--clr-teal-dark);
+  font-size: 1.1rem;
+}
+
+/* ──────────────────────────────────────────────
+   18. ERROR PAGE — .error-page
+────────────────────────────────────────────── */
+.error-page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--sp-5);
+  padding: var(--sp-12) var(--sp-6);
+  text-align: center;
+  min-height: 50vh;
+}
+
+.error-code {
+  font-size: 3.5rem;
+  font-weight: bold;
+  color: var(--clr-heading);
+}
+
+.error-message {
+  font-size: 1.05rem;
+  color: #555;
+  max-width: 40ch;
+  line-height: 1.55;
+}
+
+/* Footer error link — subtle styling */
+.footer-error-link {
+  color: rgba(255,255,255,0.5);
+  font-size: 0.75rem;
+}
+
+.footer-error-link:hover {
+  color: #ff6b6b;
+  text-decoration: underline;
+}
+
+/* ──────────────────────────────────────────────
+   19. MEDIA QUERY — CLASSIFICATION & DETAIL
+   LARGER SCREENS (≥ 600px)
+────────────────────────────────────────────── */
+@media screen and (min-width: 600px) {
+
+  /* Classification: 3-column grid */
+  #inv-display {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  /* Vehicle detail: side-by-side */
+  #vehicle-detail {
+    flex-direction: row;
+    align-items: flex-start;
+    gap: var(--sp-8);
+  }
+
+  #vehicle-image {
+    flex: 1 1 50%;
+  }
+
+  #vehicle-info {
+    flex: 1 1 50%;
+  }
+
+  #detail-heading {
+    font-size: 1.55rem;
+    padding: var(--sp-5) var(--sp-8) 0;
+  }
+
+  #vehicle-detail {
+    padding: var(--sp-6) var(--sp-8) var(--sp-10);
+  }
+
+}
+
+/* ──────────────────────────────────────────────
+   20. MEDIA QUERY — WIDE SCREENS (≥ 800px)
+────────────────────────────────────────────── */
+@media screen and (min-width: 800px) {
+
+  #inv-display {
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--sp-6);
+    padding: var(--sp-8);
+  }
+
+  #inv-display li a img {
+    height: 200px;
+  }
+
+  #vehicle-info h2 {
+    font-size: 1.4rem;
+  }
+
+  #vehicle-specs li {
+    font-size: 1rem;
+  }
+
+  .error-code {
+    font-size: 5rem;
+  }
+
+}
