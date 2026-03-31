@@ -1,0 +1,130 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 420" width="700" height="420">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#1a2e45;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#0d1b2a;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="carGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#c8973a;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#8a6020;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="glassGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#a8d4f5;stop-opacity:0.9" />
+      <stop offset="100%" style="stop-color:#6ba8d6;stop-opacity:0.7" />
+    </linearGradient>
+    <filter id="glow">
+      <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
+      <feMerge>
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+    <filter id="shadow">
+      <feDropShadow dx="0" dy="8" stdDeviation="12" flood-color="#000" flood-opacity="0.4"/>
+    </filter>
+  </defs>
+
+  <!-- Background -->
+  <rect width="700" height="420" fill="url(#bg)"/>
+
+  <!-- Ground reflection -->
+  <ellipse cx="350" cy="380" rx="260" ry="18" fill="rgba(200,151,58,0.08)"/>
+
+  <!-- Car body (sedan shape) -->
+  <g filter="url(#shadow)">
+    <!-- Main body -->
+    <path d="M120 300 L130 240 L190 200 L280 185 L380 182 L480 188 L545 220 L575 260 L580 300 Z"
+          fill="url(#carGrad)" stroke="#b07d2a" stroke-width="1.5"/>
+
+    <!-- Roof/cabin -->
+    <path d="M215 240 L245 195 L290 182 L400 180 L450 190 L490 220 L500 245 Z"
+          fill="#8a6020" stroke="#b07d2a" stroke-width="1"/>
+
+    <!-- Windshield -->
+    <path d="M245 200 L265 182 L295 175 L385 173 L420 180 L450 200 L450 240 L240 240 Z"
+          fill="url(#glassGrad)" opacity="0.85" stroke="#6ba8d6" stroke-width="0.8"/>
+
+    <!-- Rear window -->
+    <path d="M190 205 L220 180 L248 172 L248 200 L215 238 Z"
+          fill="url(#glassGrad)" opacity="0.7" stroke="#6ba8d6" stroke-width="0.8"/>
+
+    <!-- Side windows -->
+    <rect x="268" y="178" width="70" height="58" rx="4" fill="url(#glassGrad)" opacity="0.75" stroke="#6ba8d6" stroke-width="0.5"/>
+    <rect x="348" y="176" width="80" height="60" rx="4" fill="url(#glassGrad)" opacity="0.75" stroke="#6ba8d6" stroke-width="0.5"/>
+
+    <!-- Door lines -->
+    <line x1="342" y1="190" x2="342" y2="295" stroke="#b07d2a" stroke-width="1.5" opacity="0.6"/>
+    <line x1="440" y1="192" x2="440" y2="295" stroke="#b07d2a" stroke-width="1.5" opacity="0.6"/>
+
+    <!-- Door handles -->
+    <rect x="358" y="255" width="18" height="5" rx="2.5" fill="#e5b96a" opacity="0.8"/>
+    <rect x="455" y="255" width="18" height="5" rx="2.5" fill="#e5b96a" opacity="0.8"/>
+
+    <!-- Hood line -->
+    <path d="M480 190 L545 222 L575 260 L570 265 L478 200 Z"
+          fill="rgba(0,0,0,0.12)"/>
+
+    <!-- Headlight -->
+    <ellipse cx="558" cy="268" rx="18" ry="10" fill="#fffde0" opacity="0.9" filter="url(#glow)"/>
+    <ellipse cx="558" cy="268" rx="12" ry="7" fill="#ffff99" opacity="1"/>
+
+    <!-- Tail light -->
+    <rect x="125" y="255" width="24" height="14" rx="3" fill="#ff4444" opacity="0.85"/>
+    <rect x="127" y="257" width="10" height="10" rx="2" fill="#ff8888" opacity="0.9"/>
+
+    <!-- Front bumper -->
+    <path d="M545 280 L578 275 L585 305 L555 308 Z" fill="#6a4a18" stroke="#b07d2a" stroke-width="0.8"/>
+
+    <!-- Rear bumper -->
+    <path d="M120 275 L110 280 L107 308 L130 308 Z" fill="#6a4a18" stroke="#b07d2a" stroke-width="0.8"/>
+
+    <!-- Side skirt -->
+    <path d="M120 295 L580 295 L580 308 L120 308 Z" fill="#7a5520" opacity="0.8"/>
+
+    <!-- Grille -->
+    <rect x="546" y="270" width="24" height="18" rx="2" fill="#1a1a1a" stroke="#b07d2a" stroke-width="0.5"/>
+    <line x1="550" y1="273" x2="566" y2="273" stroke="#c8973a" stroke-width="1" opacity="0.6"/>
+    <line x1="550" y1="277" x2="566" y2="277" stroke="#c8973a" stroke-width="1" opacity="0.6"/>
+    <line x1="550" y1="281" x2="566" y2="281" stroke="#c8973a" stroke-width="1" opacity="0.6"/>
+    <line x1="550" y1="285" x2="566" y2="285" stroke="#c8973a" stroke-width="1" opacity="0.6"/>
+
+    <!-- Rear wheels -->
+    <circle cx="205" cy="310" r="42" fill="#1a1a1a" stroke="#555" stroke-width="2"/>
+    <circle cx="205" cy="310" r="30" fill="#2a2a2a"/>
+    <circle cx="205" cy="310" r="20" fill="#333" stroke="#c8973a" stroke-width="1.5"/>
+    <circle cx="205" cy="310" r="8" fill="#c8973a"/>
+    <!-- Spoke details -->
+    <line x1="205" y1="290" x2="205" y2="295" stroke="#aaa" stroke-width="2.5"/>
+    <line x1="205" y1="325" x2="205" y2="330" stroke="#aaa" stroke-width="2.5"/>
+    <line x1="185" y1="310" x2="190" y2="310" stroke="#aaa" stroke-width="2.5"/>
+    <line x1="220" y1="310" x2="225" y2="310" stroke="#aaa" stroke-width="2.5"/>
+    <line x1="191" y1="296" x2="195" y2="300" stroke="#aaa" stroke-width="2.5"/>
+    <line x1="215" y1="320" x2="219" y2="324" stroke="#aaa" stroke-width="2.5"/>
+    <line x1="191" y1="324" x2="195" y2="320" stroke="#aaa" stroke-width="2.5"/>
+    <line x1="215" y1="300" x2="219" y2="296" stroke="#aaa" stroke-width="2.5"/>
+
+    <!-- Front wheels -->
+    <circle cx="488" cy="310" r="42" fill="#1a1a1a" stroke="#555" stroke-width="2"/>
+    <circle cx="488" cy="310" r="30" fill="#2a2a2a"/>
+    <circle cx="488" cy="310" r="20" fill="#333" stroke="#c8973a" stroke-width="1.5"/>
+    <circle cx="488" cy="310" r="8" fill="#c8973a"/>
+    <line x1="488" y1="290" x2="488" y2="295" stroke="#aaa" stroke-width="2.5"/>
+    <line x1="488" y1="325" x2="488" y2="330" stroke="#aaa" stroke-width="2.5"/>
+    <line x1="468" y1="310" x2="473" y2="310" stroke="#aaa" stroke-width="2.5"/>
+    <line x1="503" y1="310" x2="508" y2="310" stroke="#aaa" stroke-width="2.5"/>
+    <line x1="474" y1="296" x2="478" y2="300" stroke="#aaa" stroke-width="2.5"/>
+    <line x1="498" y1="320" x2="502" y2="324" stroke="#aaa" stroke-width="2.5"/>
+    <line x1="474" y1="324" x2="478" y2="320" stroke="#aaa" stroke-width="2.5"/>
+    <line x1="498" y1="300" x2="502" y2="296" stroke="#aaa" stroke-width="2.5"/>
+  </g>
+
+  <!-- Road line -->
+  <rect x="0" y="352" width="700" height="3" fill="rgba(200,151,58,0.15)" rx="1.5"/>
+
+  <!-- Decorative elements -->
+  <circle cx="80" cy="80" r="120" fill="rgba(200,151,58,0.04)" stroke="rgba(200,151,58,0.06)" stroke-width="1"/>
+  <circle cx="640" cy="350" r="80" fill="rgba(200,151,58,0.03)" stroke="rgba(200,151,58,0.05)" stroke-width="1"/>
+
+  <!-- Brand text in image -->
+  <text x="350" y="50" text-anchor="middle" font-family="Georgia, serif" font-size="13" fill="rgba(200,151,58,0.35)" letter-spacing="6">CSE MOTORS</text>
+</svg>

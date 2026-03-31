@@ -1,49 +1,40 @@
-/* =============================================
-   CSE MOTORS — MAIN STYLESHEET
-   Mobile-first | Accessible | WCAG AA Compliant
-   Matches assignment reference design
-   ============================================= */
+/* ===========================================
+   CSE Motors – Main Stylesheet
+   Mobile-First | Accessible | Valid CSS3
+   Author: CSE 340 Student
+   =========================================== */
 
-/* ──────────────────────────────────────────────
-   1. CSS CUSTOM PROPERTIES
-────────────────────────────────────────────── */
+/* ── CSS Custom Properties ─────────────────── */
 :root {
-  /* Colors matching reference screenshot */
-  --clr-white:       #ffffff;
-  --clr-bg:          #ffffff;
-  --clr-nav-bg:      #333333;
-  --clr-nav-text:    #ffffff;
-  --clr-teal:        #00bcd4;
-  --clr-teal-dark:   #0097a7;
-  --clr-heading:     #222222;
-  --clr-text:        #222222;
-  --clr-footer-bg:   #333333;
-  --clr-footer-text: #ffffff;
-  --clr-border:      #cccccc;
-  --clr-account:     #555555;
+  --clr-dark:       #1a1a1a;
+  --clr-nav-bg:     #2c2c2c;
+  --clr-nav-text:   #ffffff;
+  --clr-teal:       #2aaccc;
+  --clr-teal-dark:  #1e8aaa;
+  --clr-teal-light: #4ecde6;
+  --clr-white:      #ffffff;
+  --clr-off-white:  #f4f4f4;
+  --clr-text:       #222222;
+  --clr-text-muted: #555555;
+  --clr-border:     #cccccc;
+  --clr-check-dark: #1a1a1a;
+  --clr-check-light:#ffffff;
 
-  /* Typography */
-  --ff-body: Arial, Helvetica, sans-serif;
+  --font-heading: Georgia, 'Times New Roman', serif;
+  --font-body:    'Trebuchet MS', Arial, sans-serif;
 
-  /* Spacing */
-  --sp-1:  0.25rem;
-  --sp-2:  0.5rem;
-  --sp-3:  0.75rem;
-  --sp-4:  1rem;
-  --sp-5:  1.25rem;
-  --sp-6:  1.5rem;
-  --sp-8:  2rem;
-  --sp-10: 2.5rem;
-  --sp-12: 3rem;
+  --space-xs:  0.4rem;
+  --space-sm:  0.8rem;
+  --space-md:  1.2rem;
+  --space-lg:  2rem;
+  --space-xl:  3rem;
 
   --max-width: 900px;
-  --border-radius: 4px;
+  --radius:    4px;
   --transition: 0.2s ease;
 }
 
-/* ──────────────────────────────────────────────
-   2. RESET & BASE
-────────────────────────────────────────────── */
+/* ── Reset ──────────────────────────────────── */
 *,
 *::before,
 *::after {
@@ -53,89 +44,74 @@
 }
 
 html {
-  font-size: 100%;
+  font-size: 16px;
   scroll-behavior: smooth;
 }
 
 body {
-  font-family: var(--ff-body);
-  font-size: 1rem;
-  line-height: 1.5;
+  font-family: var(--font-body);
   color: var(--clr-text);
-  background-color: #f0f0f0;
+  background-color: var(--clr-off-white);
+  line-height: 1.6;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+main {
+  flex: 1;
 }
 
 img {
-  display: block;
   max-width: 100%;
   height: auto;
-}
-
-a {
-  color: var(--clr-teal);
-  text-decoration: none;
-  transition: color var(--transition);
-}
-
-a:hover,
-a:focus {
-  color: var(--clr-teal-dark);
-  text-decoration: underline;
+  display: block;
 }
 
 ul {
   list-style: none;
 }
 
-/* ──────────────────────────────────────────────
-   3. ACCESSIBILITY
-────────────────────────────────────────────── */
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+/* ── Skip Link ──────────────────────────────── */
 .skip-link {
   position: absolute;
   top: -100%;
   left: 1rem;
-  z-index: 9999;
   background: var(--clr-teal);
   color: var(--clr-white);
-  font-weight: bold;
-  padding: 0.5rem 1.5rem;
-  border-radius: var(--border-radius);
-  text-decoration: none;
+  padding: 0.4rem 0.8rem;
+  border-radius: var(--radius);
+  font-size: 0.9rem;
+  z-index: 9999;
+  transition: top var(--transition);
 }
-
 .skip-link:focus {
-  top: 1rem;
+  top: 0.5rem;
 }
 
-:focus-visible {
-  outline: 3px solid var(--clr-teal);
-  outline-offset: 3px;
-}
-
-/* ──────────────────────────────────────────────
-   4. PAGE WRAPPER — centered, max-width card
-────────────────────────────────────────────── */
-#wrapper {
-  display: flex;
-  flex-direction: column;
-  min-height: 100vh;
+/* ── Page wrapper (checkered border effect) ─── */
+#page-wrapper {
   max-width: var(--max-width);
-  margin-inline: auto;
-  background-color: var(--clr-bg);
-  border: 1px solid var(--clr-border);
-  box-shadow: 0 0 12px rgba(0,0,0,0.1);
-}
-
-#wrapper > main {
-  flex: 1;
-}
-
-/* ──────────────────────────────────────────────
-   5. HEADER
-────────────────────────────────────────────── */
-#top-header {
+  margin: 1.5rem auto;
+  border: 12px solid var(--clr-dark);
+  border-image: repeating-conic-gradient(
+    var(--clr-check-dark) 0% 25%,
+    var(--clr-check-light) 0% 50%
+  ) 12 / 12px;
   background-color: var(--clr-white);
-  padding: var(--sp-4) var(--sp-6);
+  outline: 2px solid var(--clr-teal);
+  outline-offset: -2px;
+}
+
+/* ── Site Header ─────────────────────────────── */
+.site-header {
+  background-color: var(--clr-white);
+  padding: 0.75rem var(--space-md);
 }
 
 .header-inner {
@@ -144,599 +120,408 @@ ul {
   justify-content: space-between;
 }
 
-.brand-link {
-  text-decoration: none;
-  color: var(--clr-heading);
-}
-
-.brand-name {
-  font-size: 1.5rem;
+.site-title {
+  font-family: var(--font-heading);
+  font-size: 1.6rem;
   font-weight: bold;
-  color: var(--clr-heading);
-}
-
-/* Hide elements not in reference design */
-.brand-tagline,
-.brand-icon {
-  display: none;
-}
-
-.header-actions a {
-  font-size: 0.82rem;
-  color: var(--clr-account);
+  color: var(--clr-dark);
+  letter-spacing: 0.01em;
   text-decoration: none;
-  font-variant: small-caps;
-  letter-spacing: 0.04em;
 }
 
-.header-actions a:hover,
-.header-actions a:focus {
+.account-link {
+  font-size: 0.85rem;
+  font-style: italic;
+  color: var(--clr-text-muted);
+  text-transform: capitalize;
+  letter-spacing: 0.02em;
+  text-decoration: none;
+  transition: color var(--transition);
+}
+
+.account-link:hover,
+.account-link:focus-visible {
   color: var(--clr-teal);
   text-decoration: underline;
 }
 
-/* ──────────────────────────────────────────────
-   6. NAVIGATION
-────────────────────────────────────────────── */
-#main-navigation {
+.account-link:focus-visible {
+  outline: 2px solid var(--clr-teal);
+  outline-offset: 2px;
+  border-radius: var(--radius);
+}
+
+/* ── Site Navigation ─────────────────────────── */
+.site-nav {
   background-color: var(--clr-nav-bg);
 }
 
-/* Always show full nav — matches reference bar */
 .nav-toggle {
-  display: none;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0.85rem var(--space-md);
+  width: 100%;
+  align-items: flex-start;
+}
+
+.nav-toggle span {
+  display: block;
+  width: 24px;
+  height: 2px;
+  background-color: var(--clr-white);
+  border-radius: 2px;
+  transition: transform var(--transition), opacity var(--transition);
+}
+
+.nav-toggle[aria-expanded="true"] span:nth-child(1) {
+  transform: translateY(7px) rotate(45deg);
+}
+.nav-toggle[aria-expanded="true"] span:nth-child(2) {
+  opacity: 0;
+}
+.nav-toggle[aria-expanded="true"] span:nth-child(3) {
+  transform: translateY(-7px) rotate(-45deg);
 }
 
 .nav-menu {
-  display: block;
+  display: none;
+  flex-direction: column;
 }
 
-#main-nav {
+.nav-menu.open {
   display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  padding: 0;
 }
 
-#main-nav li a {
+.nav-link {
   display: block;
-  padding: var(--sp-3) var(--sp-5);
+  padding: 0.65rem var(--space-md);
   color: var(--clr-nav-text);
-  font-size: 0.95rem;
-  text-decoration: none;
-  transition: background-color var(--transition);
+  font-size: 0.9rem;
+  font-weight: 500;
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+  transition: background-color var(--transition), color var(--transition);
+  text-transform: capitalize;
 }
 
-#main-nav li a:hover,
-#main-nav li a:focus {
-  background-color: rgba(255,255,255,0.15);
-  text-decoration: none;
+.nav-link:hover,
+.nav-link:focus-visible {
+  background-color: rgba(255,255,255,0.12);
+  color: var(--clr-teal-light);
 }
 
-/* ──────────────────────────────────────────────
-   7. MAIN CONTENT — HOME PAGE
-────────────────────────────────────────────── */
-#home-wrapper {
-  padding: var(--sp-6);
+.nav-link.active {
+  background-color: rgba(42, 172, 204, 0.2);
+  color: var(--clr-teal-light);
 }
 
-#home-heading {
-  font-size: 1.45rem;
+.nav-link:focus-visible {
+  outline: 2px solid var(--clr-teal-light);
+  outline-offset: -2px;
+}
+
+/* ── Welcome Banner ─────────────────────────── */
+.welcome-banner {
+  padding: var(--space-md) var(--space-md) var(--space-sm);
+  background-color: var(--clr-white);
+}
+
+.welcome-banner h1 {
+  font-family: var(--font-heading);
+  font-size: 1.5rem;
   font-weight: bold;
-  color: var(--clr-heading);
-  margin-bottom: var(--sp-5);
+  color: var(--clr-dark);
 }
 
-/* ──────────────────────────────────────────────
-   8. HERO — mobile: stacked, content then image
-────────────────────────────────────────────── */
-#hero {
+/* ── Hero Vehicle Section ────────────────────── */
+.hero-vehicle {
+  background-color: var(--clr-white);
+  padding: var(--space-sm) var(--space-md) var(--space-md);
+}
+
+.hero-vehicle-inner {
   display: flex;
   flex-direction: column;
-  gap: var(--sp-4);
-  margin-bottom: var(--sp-8);
+  gap: var(--space-md);
 }
 
-#hero-content {
-  display: flex;
-  flex-direction: column;
-  gap: var(--sp-3);
-}
-
-#hero-content h2 {
-  font-size: 1.4rem;
+.vehicle-name {
+  font-family: var(--font-heading);
+  font-size: 1.3rem;
+  color: var(--clr-teal);
   font-weight: bold;
-  color: var(--clr-teal);
-  margin: 0;
+  margin-bottom: 0.4rem;
 }
 
-#hero-features {
-  display: flex;
-  flex-direction: column;
-  gap: var(--sp-1);
+.vehicle-features {
+  list-style: none;
+  margin-bottom: var(--space-md);
 }
 
-#hero-features li {
-  color: var(--clr-teal);
+.vehicle-features li {
   font-size: 0.95rem;
+  color: var(--clr-teal);
+  font-weight: 500;
+  padding: 0.15rem 0;
 }
 
 .btn-own {
   display: inline-block;
   background-color: var(--clr-teal);
   color: var(--clr-white);
-  font-size: 0.95rem;
+  padding: 0.55rem 1.4rem;
+  border-radius: var(--radius);
+  font-size: 0.9rem;
   font-weight: bold;
-  padding: var(--sp-3) var(--sp-6);
-  border-radius: var(--border-radius);
   text-decoration: none;
-  margin-top: var(--sp-2);
-  align-self: flex-start;
-  transition: background-color var(--transition);
+  transition: background-color var(--transition), transform var(--transition);
   border: none;
   cursor: pointer;
 }
 
 .btn-own:hover,
-.btn-own:focus {
+.btn-own:focus-visible {
   background-color: var(--clr-teal-dark);
-  color: var(--clr-white);
-  text-decoration: none;
+  transform: translateY(-1px);
 }
 
-#hero-image img {
+.btn-own:focus-visible {
+  outline: 3px solid var(--clr-dark);
+  outline-offset: 2px;
+}
+
+.hero-vehicle-image img {
   width: 100%;
+  max-width: 320px;
   height: auto;
+  margin: 0 auto;
 }
 
-/* ──────────────────────────────────────────────
-   9. HOME BOTTOM ROW — mobile: stacked
-────────────────────────────────────────────── */
-#home-bottom {
+/* ── Lower Content (Upgrades + Reviews) ──────── */
+.lower-content {
+  background-color: var(--clr-white);
+  padding: var(--space-md);
   display: flex;
   flex-direction: column;
-  gap: var(--sp-8);
-}
-
-/* ──────────────────────────────────────────────
-   10. UPGRADES
-────────────────────────────────────────────── */
-#upgrades h2,
-#reviews h2 {
-  font-size: 1.1rem;
-  font-weight: bold;
-  color: var(--clr-heading);
-  margin-bottom: var(--sp-4);
-}
-
-#upgrades-grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: var(--sp-3);
-}
-
-.upgrade-card {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: var(--sp-2);
-  background-color: var(--clr-teal);
-  border-radius: var(--border-radius);
-  padding: var(--sp-4) var(--sp-2);
-  text-decoration: none;
-  transition: background-color var(--transition), transform var(--transition);
-}
-
-.upgrade-card:hover,
-.upgrade-card:focus {
-  background-color: var(--clr-teal-dark);
-  transform: translateY(-2px);
-  text-decoration: none;
-}
-
-.upgrade-card img {
-  width: 80px;
-  height: 80px;
-  object-fit: contain;
-  background: rgba(255,255,255,0.25);
-  border-radius: 4px;
-  padding: 4px;
-}
-
-.upgrade-card span {
-  font-size: 0.82rem;
-  font-weight: bold;
-  color: var(--clr-white);
-  text-align: center;
-}
-
-/* ──────────────────────────────────────────────
-   11. REVIEWS
-────────────────────────────────────────────── */
-#reviews-list {
-  list-style: disc;
-  padding-left: var(--sp-5);
-  display: flex;
-  flex-direction: column;
-  gap: var(--sp-4);
-}
-
-#reviews-list li {
-  font-size: 0.92rem;
-  color: var(--clr-text);
-  line-height: 1.45;
-}
-
-/* ──────────────────────────────────────────────
-   12. FOOTER
-────────────────────────────────────────────── */
-#site-footer {
-  background-color: var(--clr-footer-bg);
-  color: var(--clr-footer-text);
-  padding: var(--sp-4) var(--sp-6);
-  text-align: center;
-}
-
-.footer-inner {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: var(--sp-2);
-}
-
-/* Hide elements not visible in reference footer */
-.brand-icon-sm,
-.footer-brand-name,
-.footer-links {
-  display: none;
-}
-
-.footer-copy {
-  font-size: 0.85rem;
-  color: var(--clr-footer-text);
-}
-
-/* ──────────────────────────────────────────────
-   13. ERROR PAGE
-────────────────────────────────────────────── */
-.error-page {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: var(--sp-5);
-  padding: var(--sp-12) var(--sp-6);
-  text-align: center;
-  min-height: 50vh;
-}
-
-.error-code {
-  font-size: 4rem;
-  font-weight: bold;
-  color: var(--clr-heading);
-}
-
-.error-message {
-  font-size: 1.1rem;
-  color: #555;
-}
-
-/* ──────────────────────────────────────────────
-   14. MEDIA QUERY — LARGER SCREENS (≥ 600px)
-   Hero side-by-side, bottom two columns
-────────────────────────────────────────────── */
-@media screen and (min-width: 600px) {
-
-  /* Hero: content left, image right */
-  #hero {
-    flex-direction: row;
-    align-items: center;
-    gap: var(--sp-6);
-  }
-
-  #hero-content {
-    flex: 0 0 200px;
-  }
-
-  #hero-image {
-    flex: 1 1 auto;
-  }
-
-  /* Bottom section: two equal columns */
-  #home-bottom {
-    flex-direction: row;
-    align-items: flex-start;
-    gap: var(--sp-8);
-  }
-
-  #upgrades {
-    flex: 0 0 46%;
-  }
-
-  #reviews {
-    flex: 1 1 auto;
-  }
-
-}
-
-/* ──────────────────────────────────────────────
-   15. MEDIA QUERY — WIDE SCREENS (≥ 800px)
-────────────────────────────────────────────── */
-@media screen and (min-width: 800px) {
-
-  #home-wrapper {
-    padding: var(--sp-8);
-  }
-
-  #home-heading {
-    font-size: 1.65rem;
-  }
-
-  #hero-content {
-    flex: 0 0 220px;
-  }
-
-  #hero-content h2 {
-    font-size: 1.6rem;
-  }
-
-  .upgrade-card img {
-    width: 100px;
-    height: 100px;
-  }
-
-  .upgrade-card span {
-    font-size: 0.9rem;
-  }
-
-}
-
-/* ══════════════════════════════════════════════
-   WEEK 3 ADDITIONS
-   Classification Grid | Vehicle Detail | Errors
-   ══════════════════════════════════════════════ */
-
-/* ──────────────────────────────────────────────
-   16. CLASSIFICATION GRID — #inv-display
-────────────────────────────────────────────── */
-#inv-display {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: var(--sp-5);
-  list-style: none;
-  padding: var(--sp-6);
-  margin: 0;
-}
-
-#inv-display li {
-  background: var(--clr-white);
-  border: 1px solid var(--clr-border);
-  border-radius: 6px;
-  overflow: hidden;
-  display: flex;
-  flex-direction: column;
-  transition: box-shadow 0.2s ease, transform 0.2s ease;
-}
-
-#inv-display li:hover {
-  box-shadow: 0 4px 16px rgba(0,0,0,0.13);
-  transform: translateY(-3px);
-}
-
-#inv-display li a img {
-  width: 100%;
-  height: 160px;
-  object-fit: cover;
-  display: block;
-}
-
-#inv-display li a {
-  text-decoration: none;
-  display: block;
-}
-
-#inv-display .namePrice {
-  padding: var(--sp-3) var(--sp-4);
-}
-
-#inv-display .namePrice hr {
-  border: none;
+  gap: var(--space-lg);
   border-top: 1px solid var(--clr-border);
-  margin-bottom: var(--sp-3);
 }
 
-#inv-display .namePrice h2 {
+/* ── Section Labels ─────────────────────────── */
+.section-label {
+  font-family: var(--font-body);
   font-size: 1rem;
   font-weight: bold;
-  margin-bottom: var(--sp-2);
+  color: var(--clr-dark);
+  margin-bottom: var(--space-sm);
 }
 
-#inv-display .namePrice h2 a {
-  color: var(--clr-heading);
+/* ── Upgrades Grid ──────────────────────────── */
+.upgrades-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-sm);
+}
+
+.upgrade-item {
+  background-color: var(--clr-teal);
+  border-radius: var(--radius);
+  overflow: hidden;
+  transition: opacity var(--transition);
+}
+
+.upgrade-item:hover {
+  opacity: 0.88;
+}
+
+.upgrade-link {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: var(--space-sm);
   text-decoration: none;
+  color: var(--clr-white);
+  gap: 0.4rem;
 }
 
-#inv-display .namePrice h2 a:hover {
-  color: var(--clr-teal);
+.upgrade-img {
+  width: 80px;
+  height: 65px;
+  object-fit: contain;
+  background-color: rgba(255,255,255,0.15);
+  border-radius: 2px;
+}
+
+.upgrade-name {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--clr-white);
+  text-align: center;
   text-decoration: underline;
 }
 
-#inv-display .namePrice span {
-  font-size: 0.95rem;
-  color: var(--clr-teal-dark);
-  font-weight: bold;
+.upgrade-link:focus-visible {
+  outline: 3px solid var(--clr-dark);
+  outline-offset: 2px;
+  border-radius: var(--radius);
 }
 
-.notice {
-  padding: var(--sp-6);
-  color: #c0392b;
-  font-size: 1rem;
-}
-
-/* ──────────────────────────────────────────────
-   17. VEHICLE DETAIL — #vehicle-detail
-   Mobile: stacked | Large: side-by-side
-────────────────────────────────────────────── */
-#detail-heading {
-  font-size: 1.35rem;
-  font-weight: bold;
-  color: var(--clr-heading);
-  padding: var(--sp-4) var(--sp-6) 0;
-}
-
-#vehicle-detail {
+/* ── Reviews List ───────────────────────────── */
+.reviews-list {
   display: flex;
   flex-direction: column;
-  gap: var(--sp-5);
-  padding: var(--sp-5) var(--sp-6) var(--sp-8);
+  gap: 0.5rem;
 }
 
-#vehicle-image img {
-  width: 100%;
-  height: auto;
-  border-radius: 6px;
-  display: block;
-  object-fit: cover;
-}
-
-#vehicle-info h2 {
-  font-size: 1.2rem;
-  font-weight: bold;
-  color: var(--clr-heading);
-  margin-bottom: var(--sp-4);
-}
-
-#vehicle-specs {
-  list-style: none;
+.review-item {
   display: flex;
-  flex-direction: column;
-  gap: var(--sp-3);
-  margin-bottom: var(--sp-5);
-}
-
-#vehicle-specs li {
-  font-size: 0.95rem;
+  align-items: flex-start;
+  gap: 0.4rem;
+  font-size: 0.9rem;
   color: var(--clr-text);
-  border-bottom: 1px solid var(--clr-border);
-  padding-bottom: var(--sp-2);
   line-height: 1.5;
 }
 
-#vehicle-specs li:last-child {
-  border-bottom: none;
+.review-item::before {
+  content: "•";
+  color: var(--clr-dark);
+  font-size: 1rem;
+  flex-shrink: 0;
+  margin-top: 0.05rem;
 }
 
-.spec-label {
-  font-weight: bold;
-  color: var(--clr-heading);
-  margin-right: var(--sp-2);
+/* ── Footer ─────────────────────────────────── */
+.site-footer {
+  background-color: var(--clr-white);
+  border-top: 1px solid var(--clr-border);
+  padding: var(--space-sm) var(--space-md);
+  text-align: center;
 }
 
-.spec-price {
-  color: var(--clr-teal-dark);
-  font-size: 1.1rem;
+.footer-copy {
+  font-size: 0.8rem;
+  color: var(--clr-text-muted);
 }
 
-/* ──────────────────────────────────────────────
-   18. ERROR PAGE — .error-page
-────────────────────────────────────────────── */
-.error-page {
+/* ── 404 Error Page ──────────────────────────── */
+.error-section {
   display: flex;
-  flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: var(--sp-5);
-  padding: var(--sp-12) var(--sp-6);
-  text-align: center;
   min-height: 50vh;
+  padding: var(--space-xl) var(--space-md);
+  text-align: center;
+  background: var(--clr-white);
+}
+
+.error-inner {
+  max-width: 400px;
 }
 
 .error-code {
-  font-size: 3.5rem;
+  font-family: var(--font-heading);
+  font-size: 5rem;
   font-weight: bold;
-  color: var(--clr-heading);
+  color: var(--clr-teal);
+  line-height: 1;
+  margin-bottom: var(--space-sm);
+}
+
+.error-title {
+  font-family: var(--font-heading);
+  font-size: 1.5rem;
+  color: var(--clr-dark);
+  margin-bottom: var(--space-sm);
 }
 
 .error-message {
-  font-size: 1.05rem;
-  color: #555;
-  max-width: 40ch;
-  line-height: 1.55;
+  font-size: 0.95rem;
+  color: var(--clr-text-muted);
+  margin-bottom: var(--space-lg);
 }
 
-/* Footer error link — subtle styling */
-.footer-error-link {
-  color: rgba(255,255,255,0.5);
-  font-size: 0.75rem;
+.btn-home {
+  display: inline-block;
+  background-color: var(--clr-teal);
+  color: var(--clr-white);
+  padding: 0.55rem 1.4rem;
+  border-radius: var(--radius);
+  font-weight: bold;
+  transition: background-color var(--transition);
 }
 
-.footer-error-link:hover {
-  color: #ff6b6b;
-  text-decoration: underline;
+.btn-home:hover,
+.btn-home:focus-visible {
+  background-color: var(--clr-teal-dark);
 }
 
-/* ──────────────────────────────────────────────
-   19. MEDIA QUERY — CLASSIFICATION & DETAIL
-   LARGER SCREENS (≥ 600px)
-────────────────────────────────────────────── */
-@media screen and (min-width: 600px) {
+.btn-home:focus-visible {
+  outline: 3px solid var(--clr-dark);
+  outline-offset: 2px;
+}
 
-  /* Classification: 3-column grid */
-  #inv-display {
-    grid-template-columns: repeat(3, 1fr);
+/* ===========================================
+   MEDIA QUERIES — Larger Screens (≥640px)
+   =========================================== */
+@media screen and (min-width: 640px) {
+
+  /* Nav: horizontal bar */
+  .nav-toggle {
+    display: none;
   }
 
-  /* Vehicle detail: side-by-side */
-  #vehicle-detail {
+  .nav-menu {
+    display: flex !important;
+    flex-direction: row;
+    align-items: stretch;
+  }
+
+  .nav-link {
+    padding: 0.7rem 1.1rem;
+    border-bottom: none;
+    font-size: 0.875rem;
+    text-align: center;
+  }
+
+  /* Hero: side by side */
+  .hero-vehicle-inner {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-lg);
+  }
+
+  .hero-vehicle-info {
+    flex: 1;
+  }
+
+  .hero-vehicle-image {
+    flex: 1;
+    display: flex;
+    justify-content: flex-end;
+  }
+
+  .hero-vehicle-image img {
+    max-width: 100%;
+    width: 300px;
+  }
+
+  /* Lower: two columns */
+  .lower-content {
     flex-direction: row;
     align-items: flex-start;
-    gap: var(--sp-8);
+    gap: var(--space-lg);
   }
 
-  #vehicle-image {
-    flex: 1 1 50%;
+  .upgrades-section {
+    flex: 1;
   }
 
-  #vehicle-info {
-    flex: 1 1 50%;
-  }
-
-  #detail-heading {
-    font-size: 1.55rem;
-    padding: var(--sp-5) var(--sp-8) 0;
-  }
-
-  #vehicle-detail {
-    padding: var(--sp-6) var(--sp-8) var(--sp-10);
-  }
-
-}
-
-/* ──────────────────────────────────────────────
-   20. MEDIA QUERY — WIDE SCREENS (≥ 800px)
-────────────────────────────────────────────── */
-@media screen and (min-width: 800px) {
-
-  #inv-display {
-    grid-template-columns: repeat(3, 1fr);
-    gap: var(--sp-6);
-    padding: var(--sp-8);
-  }
-
-  #inv-display li a img {
-    height: 200px;
-  }
-
-  #vehicle-info h2 {
-    font-size: 1.4rem;
-  }
-
-  #vehicle-specs li {
-    font-size: 1rem;
-  }
-
-  .error-code {
-    font-size: 5rem;
+  .reviews-section {
+    flex: 1;
   }
 
 }

@@ -1,67 +1,64 @@
-<div id="home-wrapper">
+<%/* CSE Motors – Home View */%>
 
-  <h1 id="home-heading">Welcome to CSE Motors!</h1>
+<section class="welcome-banner">
+  <h1>Welcome to CSE Motors!</h1>
+</section>
 
-  <!-- Hero: Featured Vehicle -->
-  <section id="hero" aria-labelledby="hero-vehicle-name">
-    <div id="hero-content">
-      <h2 id="hero-vehicle-name">DMC Delorean</h2>
-      <ul id="hero-features">
-        <li>3 Cup holders</li>
-        <li>Superman doors</li>
-        <li>Fuzzy dice!</li>
+<section class="hero-vehicle" aria-label="Featured vehicle">
+  <div class="hero-vehicle-inner">
+    <div class="hero-vehicle-info">
+      <h2 class="vehicle-name"><%= vehicle.name %></h2>
+      <ul class="vehicle-features" role="list">
+        <% vehicle.features.forEach(function(feature) { %>
+        <li><%= feature %></li>
+        <% }) %>
       </ul>
-      <a href="/inv/detail/1" class="btn-own">Own Today</a>
+      <a href="<%= vehicle.link %>" class="btn-own">Own Today</a>
     </div>
-    <div id="hero-image">
+    <div class="hero-vehicle-image">
       <img
-        src="/images/vehicles/delorean.jpg"
-        alt="DMC Delorean with gull-wing doors open"
-        width="600"
-        height="400"
+        src="<%= vehicle.image %>"
+        alt="<%= vehicle.name %> – featured vehicle at CSE Motors"
+        width="320"
+        height="200"
         loading="eager"
       />
     </div>
-  </section>
+  </div>
+</section>
 
-  <!-- Bottom two-column section -->
-  <div id="home-bottom">
+<section class="lower-content">
 
-    <!-- Upgrades -->
-    <section id="upgrades" aria-labelledby="upgrades-heading">
-      <h2 id="upgrades-heading">Delorean Upgrades</h2>
-      <div id="upgrades-grid">
-        <a href="/inv/upgrade/flux-capacitor" class="upgrade-card">
-          <img src="/images/upgrades/flux-capacitor.jpg" alt="Flux Capacitor" width="120" height="120" loading="lazy" />
-          <span>Flux Capacitor</span>
+  <div class="upgrades-section" aria-labelledby="upgrades-heading">
+    <h2 id="upgrades-heading" class="section-label">Delorean Upgrades</h2>
+    <ul class="upgrades-grid" role="list">
+      <% upgrades.forEach(function(upgrade) { %>
+      <li class="upgrade-item">
+        <a href="<%= upgrade.link %>" class="upgrade-link">
+          <img
+            src="<%= upgrade.image %>"
+            alt="<%= upgrade.name %>"
+            class="upgrade-img"
+            width="100"
+            height="80"
+            loading="lazy"
+          />
+          <span class="upgrade-name"><%= upgrade.name %></span>
         </a>
-        <a href="/inv/upgrade/flame-decals" class="upgrade-card">
-          <img src="/images/upgrades/flame-decals.jpg" alt="Flame Decals" width="120" height="120" loading="lazy" />
-          <span>Flame Decals</span>
-        </a>
-        <a href="/inv/upgrade/bumper-stickers" class="upgrade-card">
-          <img src="/images/upgrades/bumper-stickers.jpg" alt="Bumper Stickers" width="120" height="120" loading="lazy" />
-          <span>Bumper Stickers</span>
-        </a>
-        <a href="/inv/upgrade/hub-caps" class="upgrade-card">
-          <img src="/images/upgrades/hub-caps.jpg" alt="Hub Caps" width="120" height="120" loading="lazy" />
-          <span>Hub Caps</span>
-        </a>
-      </div>
-    </section>
+      </li>
+      <% }) %>
+    </ul>
+  </div>
 
-    <!-- Reviews -->
-    <section id="reviews" aria-labelledby="reviews-heading">
-      <h2 id="reviews-heading">DMC Delorean Reviews</h2>
-      <ul id="reviews-list">
-        <li>"So fast it's almost like traveling in time." (4/5)</li>
-        <li>"Coolest ride on the road." (4/5)</li>
-        <li>"I'm feeling McFly!" (5/5)</li>
-        <li>"The most futuristic ride of our day." (4.5/5)</li>
-        <li>"80's livin and I love it!" (5/5)</li>
-      </ul>
-    </section>
+  <div class="reviews-section" aria-labelledby="reviews-heading">
+    <h2 id="reviews-heading" class="section-label">DMC Delorean Reviews</h2>
+    <ul class="reviews-list" role="list">
+      <% reviews.forEach(function(review) { %>
+      <li class="review-item">
+        <p>&ldquo;<%= review.text %>&rdquo; (<%= review.rating %>)</p>
+      </li>
+      <% }) %>
+    </ul>
+  </div>
 
-  </div><!-- end #home-bottom -->
-
-</div><!-- end #home-wrapper -->
+</section>

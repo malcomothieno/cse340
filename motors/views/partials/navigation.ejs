@@ -1,10 +1,12 @@
-<nav id="main-navigation" aria-label="Main Navigation">
-  <button class="nav-toggle" id="navToggle" aria-expanded="false" aria-controls="nav-menu" aria-label="Toggle navigation menu">
-    <span class="hamburger-line"></span>
-    <span class="hamburger-line"></span>
-    <span class="hamburger-line"></span>
+<nav class="site-nav" role="navigation" aria-label="Main navigation">
+  <button class="nav-toggle" aria-expanded="false" aria-controls="nav-menu" aria-label="Toggle navigation">
+    <span></span><span></span><span></span>
   </button>
-  <div id="nav-menu" class="nav-menu">
-    <%- nav %>
-  </div>
+  <ul class="nav-menu" id="nav-menu" role="list">
+    <li><a href="/" class="nav-link active" aria-current="page">Home</a></li>
+    <li><a href="/inv/type/custom" class="nav-link">Custom</a></li>
+    <li><a href="/inv/type/sedan" class="nav-link">Sedan</a></li>
+    <li><a href="/inv/type/suv" class="nav-link">SUV</a></li>
+    <li><a href="/inv/type/truck" class="nav-link">Truck</a></li>
+  </ul>
 </nav>

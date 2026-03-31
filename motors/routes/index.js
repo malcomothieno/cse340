@@ -1,17 +1,8 @@
-// Needed Resources
-const express = require("express");
-const router = new express.Router();
-const utilities = require("../utilities");
+const express = require("express")
+const router = express.Router()
+const baseController = require("../controllers/baseController")
 
-// Route to build index view
-// nav is injected automatically by global middleware in server.js
-router.get(
-  "/",
-  utilities.handleErrors(async (req, res, next) => {
-    res.render("index", {
-      title: "Home",
-    });
-  })
-);
+// Index route
+router.get("/", baseController.buildHome)
 
-module.exports = router;
+module.exports = router
