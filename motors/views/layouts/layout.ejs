@@ -3,7 +3,12 @@
   <a href="#main-content" class="skip-link">Skip to main content</a>
   <div id="page-wrapper">
     <%- include('../partials/header') %>
-    <%- include('../partials/navigation') %>
+    <nav class="site-nav" role="navigation" aria-label="Main navigation">
+      <button class="nav-toggle" aria-expanded="false" aria-controls="nav-menu" aria-label="Toggle navigation">
+        <span></span><span></span><span></span>
+      </button>
+      <%- nav %>
+    </nav>
     <main id="main-content">
       <%- body %>
     </main>
