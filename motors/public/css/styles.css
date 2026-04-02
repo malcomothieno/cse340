@@ -1,7 +1,3 @@
-/* ===========================================
-   CSE Motors – Main Stylesheet
-  Author: Othieno Malcom
-   =========================================== */
 
 /* ── CSS Custom Properties ─────────────────── */
 :root {
@@ -523,4 +519,200 @@ a {
     flex: 1;
   }
 
+}
+
+
+/* ===========================================
+   WEEK 3 ADDITIONS
+   Vehicle Detail, Classification Grid, Errors
+   =========================================== */
+
+/* ── Classification Grid ─────────────────────── */
+.inv-classification h1 {
+  font-family: var(--font-heading);
+  font-size: 1.4rem;
+  color: var(--clr-dark);
+  padding: var(--space-md) var(--space-md) var(--space-sm);
+  border-bottom: 2px solid var(--clr-teal);
+  margin-bottom: var(--space-md);
+}
+
+#inv-display {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--space-md);
+  padding: var(--space-sm) var(--space-md) var(--space-md);
+  list-style: none;
+}
+
+#inv-display li {
+  background: var(--clr-white);
+  border: 1px solid var(--clr-border);
+  border-radius: var(--radius);
+  overflow: hidden;
+  transition: box-shadow var(--transition), transform var(--transition);
+}
+
+#inv-display li:hover {
+  box-shadow: 0 4px 16px rgba(0,0,0,0.12);
+  transform: translateY(-2px);
+}
+
+#inv-display img {
+  width: 100%;
+  height: 140px;
+  object-fit: cover;
+  display: block;
+}
+
+#inv-display .namePrice {
+  padding: var(--space-sm);
+}
+
+#inv-display .namePrice hr {
+  border: none;
+  border-top: 1px solid var(--clr-border);
+  margin-bottom: var(--space-xs);
+}
+
+#inv-display .namePrice h2 {
+  font-size: 0.95rem;
+  margin-bottom: 0.25rem;
+}
+
+#inv-display .namePrice h2 a {
+  color: var(--clr-dark);
+  text-decoration: none;
+  transition: color var(--transition);
+}
+
+#inv-display .namePrice h2 a:hover,
+#inv-display .namePrice h2 a:focus-visible {
+  color: var(--clr-teal);
+}
+
+#inv-display .namePrice span {
+  font-size: 0.9rem;
+  font-weight: bold;
+  color: var(--clr-teal-dark);
+}
+
+.notice {
+  padding: var(--space-md);
+  font-size: 1rem;
+  color: var(--clr-text-muted);
+}
+
+/* ── Vehicle Detail Page ──────────────────────── */
+.vehicle-detail-page {
+  padding: var(--space-md);
+}
+
+.vehicle-detail-page h1 {
+  font-family: var(--font-heading);
+  font-size: 1.4rem;
+  color: var(--clr-dark);
+  border-bottom: 2px solid var(--clr-teal);
+  padding-bottom: var(--space-sm);
+  margin-bottom: var(--space-md);
+}
+
+.vehicle-detail-wrap {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+}
+
+.vehicle-detail-image img {
+  width: 100%;
+  max-width: 100%;
+  height: auto;
+  border-radius: var(--radius);
+  border: 1px solid var(--clr-border);
+  display: block;
+}
+
+.vehicle-detail-info h2 {
+  font-family: var(--font-heading);
+  font-size: 1.2rem;
+  color: var(--clr-dark);
+  margin-bottom: var(--space-sm);
+}
+
+.vehicle-specs {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.vehicle-specs li {
+  display: flex;
+  gap: 0.6rem;
+  font-size: 0.95rem;
+  border-bottom: 1px solid var(--clr-border);
+  padding-bottom: 0.4rem;
+  align-items: baseline;
+}
+
+.vehicle-specs li.spec-desc {
+  flex-direction: column;
+  gap: 0.3rem;
+}
+
+.spec-label {
+  font-weight: bold;
+  color: var(--clr-dark);
+  min-width: 110px;
+  flex-shrink: 0;
+}
+
+.spec-value {
+  color: var(--clr-text);
+}
+
+.spec-price {
+  font-size: 1.1rem;
+  font-weight: bold;
+  color: var(--clr-teal-dark);
+}
+
+/* ── Footer error link ───────────────────────── */
+.footer-error-link {
+  margin-top: 0.3rem;
+}
+
+.footer-error-link a {
+  font-size: 0.75rem;
+  color: var(--clr-text-muted);
+  text-decoration: underline;
+  transition: color var(--transition);
+}
+
+.footer-error-link a:hover,
+.footer-error-link a:focus-visible {
+  color: #cc0000;
+}
+
+/* ── Responsive: ≥640px additions ───────────── */
+@media screen and (min-width: 640px) {
+
+  #inv-display {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .vehicle-detail-wrap {
+    flex-direction: row;
+    align-items: flex-start;
+    gap: var(--space-lg);
+  }
+
+  .vehicle-detail-image {
+    flex: 1;
+    max-width: 50%;
+  }
+
+  .vehicle-detail-info {
+    flex: 1;
+  }
 }
