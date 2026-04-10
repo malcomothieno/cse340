@@ -1,0 +1,14 @@
+<section class="inv-management">
+  <h1>Inventory Management</h1>
+
+  <% if (notice && notice.length > 0) { %>
+    <p class="notice <%= notice[0].includes('successfully') ? 'notice--success' : 'notice--error' %>">
+      <%= notice[0] %>
+    </p>
+  <% } %>
+
+  <div class="management-links">
+    <a href="/inv/add-classification" class="btn-manage">Add New Classification</a>
+    <a href="/inv/add-inventory" class="btn-manage">Add New Vehicle</a>
+  </div>
+</section>

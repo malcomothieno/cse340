@@ -3,11 +3,36 @@ require("dotenv").config()
 const express = require("express")
 const expressLayouts = require("express-ejs-layouts")
 const path = require("path")
+const session = require("express-session")
+const flash = require("connect-flash")
 const utilities = require("./utilities")
 const baseController = require("./controllers/baseController")
 const inventoryRoute = require("./routes/inventoryRoute")
 
 const app = express()
+
+app.use(express.json())
+app.use(express.urlencoded({ extended: true }))
+
+// Session
+app.use(
+  session({
+    secret: process.env.SESSION_SECRET || "superSecretCSEMotorsKey",
+    resave: false,
+    saveUninitialized: true,
+    name: "sessionId",
+  })
+)
+
+// Flash messages
+app.use(flash())
+
+// Pass flash messages to all views
+app.use(function (req, res, next) {
+  res.locals.notice = req.flash("notice")
+  next()
+})
+
 
 app.set("view engine", "ejs")
 app.use(expressLayouts)
@@ -18,10 +43,7 @@ app.set("views", path.join(__dirname, "views"))
 app.use(express.static(path.join(__dirname, "public")))
 
 
-// Home route
 app.get("/", utilities.handleErrors(baseController.buildHome))
-
-// Inventory routes
 app.use("/inv", inventoryRoute)
 
 
@@ -33,17 +55,11 @@ app.use(async (req, res, next) => {
 app.use(async (err, req, res, next) => {
   let nav = await utilities.getNav()
   console.error(`Error at: "${req.originalUrl}": ${err.message}`)
-
   const status = err.status || 500
-  let message
-
-  if (status === 404) {
-    message = err.message || "Page not found."
-  } else {
-    message =
-      "Oh no! There was a crash. Maybe try a different route? Our team has been notified."
-  }
-
+  const message =
+    status === 404
+      ? err.message
+      : "Oh no! There was a crash. Maybe try a different route?"
   res.status(status).render("errors/error", {
     title: status + " Error",
     nav,
@@ -55,7 +71,6 @@ app.use(async (err, req, res, next) => {
 
 const port = process.env.PORT || 5500
 const host = process.env.HOST || "localhost"
-
 app.listen(port, () => {
   console.log(`CSE Motors app listening on ${host}:${port}`)
 })
