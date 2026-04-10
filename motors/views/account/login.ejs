@@ -1,0 +1,46 @@
+<section class="form-section">
+  <h1>Login</h1>
+
+  <% if (notice && notice.length > 0) { %>
+    <p class="notice notice--error"><%= notice[0] %></p>
+  <% } %>
+
+  <% if (errors && errors.length > 0) { %>
+    <ul class="error-list" role="alert">
+      <% errors.forEach(function(e) { %><li><%= e.msg %></li><% }) %>
+    </ul>
+  <% } %>
+
+  <form action="/account/login" method="post" class="inv-form" novalidate>
+    <div class="form-group">
+      <label for="account_email">Email Address</label>
+      <input
+        type="email"
+        id="account_email"
+        name="account_email"
+        value="<%= account_email %>"
+        required
+        autocomplete="email"
+      />
+    </div>
+
+    <div class="form-group">
+      <label for="account_password">Password</label>
+      <input
+        type="password"
+        id="account_password"
+        name="account_password"
+        required
+        autocomplete="current-password"
+      />
+    </div>
+
+    <div class="form-actions">
+      <button type="submit" class="btn-own">Login</button>
+    </div>
+  </form>
+
+  <p class="form-alt-link">
+    Don't have an account? <a href="/account/register">Register here</a>
+  </p>
+</section>

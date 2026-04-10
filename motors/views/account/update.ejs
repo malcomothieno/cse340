@@ -1,0 +1,96 @@
+<section class="form-section">
+  <h1>Update Account</h1>
+
+  <% if (notice && notice.length > 0) { %>
+    <p class="notice <%= notice[0].includes('successfully') ? 'notice--success' : 'notice--error' %>">
+      <%= notice[0] %>
+    </p>
+  <% } %>
+
+  <% if (errors && errors.length > 0) { %>
+    <ul class="error-list" role="alert">
+      <% errors.forEach(function(e) { %><li><%= e.msg %></li><% }) %>
+    </ul>
+  <% } %>
+
+  <!-- Form 1: Account Info Update -->
+  <div class="update-form-wrap">
+    <h2 class="form-subtitle">Account Information</h2>
+    <form action="/account/update" method="post" class="inv-form" novalidate>
+      <input type="hidden" name="account_id" value="<%= account_id %>" />
+
+      <div class="form-row">
+        <div class="form-group">
+          <label for="account_firstname">First Name</label>
+          <input
+            type="text"
+            id="account_firstname"
+            name="account_firstname"
+            value="<%= account_firstname %>"
+            required
+            autocomplete="given-name"
+          />
+        </div>
+        <div class="form-group">
+          <label for="account_lastname">Last Name</label>
+          <input
+            type="text"
+            id="account_lastname"
+            name="account_lastname"
+            value="<%= account_lastname %>"
+            required
+            minlength="2"
+            autocomplete="family-name"
+          />
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="account_email">Email Address</label>
+        <input
+          type="email"
+          id="account_email"
+          name="account_email"
+          value="<%= account_email %>"
+          required
+          autocomplete="email"
+        />
+      </div>
+
+      <div class="form-actions">
+        <button type="submit" class="btn-own">Update Account</button>
+        <a href="/account/" class="btn-cancel">Cancel</a>
+      </div>
+    </form>
+  </div>
+
+  <!-- Form 2: Password Change -->
+  <div class="update-form-wrap">
+    <h2 class="form-subtitle">Change Password</h2>
+    <p class="form-hint">
+      Entering a new password below will replace your current password.
+      Password must be at least 12 characters and include uppercase,
+      lowercase, a number, and a special character.
+    </p>
+    <form action="/account/update-password" method="post" class="inv-form" novalidate>
+      <input type="hidden" name="account_id" value="<%= account_id %>" />
+
+      <div class="form-group">
+        <label for="account_password">New Password</label>
+        <input
+          type="password"
+          id="account_password"
+          name="account_password"
+          required
+          pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9])(?!.*\s).{12,}$"
+          title="Min 12 chars with uppercase, lowercase, number, and special character"
+          autocomplete="new-password"
+        />
+      </div>
+
+      <div class="form-actions">
+        <button type="submit" class="btn-own">Change Password</button>
+      </div>
+    </form>
+  </div>
+</section>

@@ -1,0 +1,77 @@
+<section class="form-section">
+  <h1>Register</h1>
+
+  <% if (notice && notice.length > 0) { %>
+    <p class="notice notice--error"><%= notice[0] %></p>
+  <% } %>
+
+  <% if (errors && errors.length > 0) { %>
+    <ul class="error-list" role="alert">
+      <% errors.forEach(function(e) { %><li><%= e.msg %></li><% }) %>
+    </ul>
+  <% } %>
+
+  <form action="/account/register" method="post" class="inv-form" novalidate>
+    <div class="form-row">
+      <div class="form-group">
+        <label for="account_firstname">First Name</label>
+        <input
+          type="text"
+          id="account_firstname"
+          name="account_firstname"
+          value="<%= account_firstname %>"
+          required
+          autocomplete="given-name"
+        />
+      </div>
+      <div class="form-group">
+        <label for="account_lastname">Last Name</label>
+        <input
+          type="text"
+          id="account_lastname"
+          name="account_lastname"
+          value="<%= account_lastname %>"
+          required
+          minlength="2"
+          autocomplete="family-name"
+        />
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="account_email">Email Address</label>
+      <input
+        type="email"
+        id="account_email"
+        name="account_email"
+        value="<%= account_email %>"
+        required
+        autocomplete="email"
+      />
+    </div>
+
+    <div class="form-group">
+      <label for="account_password">Password</label>
+      <input
+        type="password"
+        id="account_password"
+        name="account_password"
+        required
+        pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9])(?!.*\s).{12,}$"
+        title="Min 12 characters with uppercase, lowercase, number, and special character"
+        autocomplete="new-password"
+      />
+      <small class="form-hint">
+        Minimum 12 characters — must include uppercase, lowercase, number, and special character.
+      </small>
+    </div>
+
+    <div class="form-actions">
+      <button type="submit" class="btn-own">Create Account</button>
+    </div>
+  </form>
+
+  <p class="form-alt-link">
+    Already have an account? <a href="/account/login">Login here</a>
+  </p>
+</section>

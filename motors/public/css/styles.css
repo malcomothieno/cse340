@@ -1,4 +1,6 @@
 
+
+/* ── CSS Custom Properties ─────────────────── */
 :root {
   --clr-dark:       #1a1a1a;
   --clr-nav-bg:     #2c2c2c;
@@ -911,4 +913,68 @@ a {
   outline: none;
   border-color: var(--clr-teal);
   box-shadow: 0 0 0 3px rgba(42, 172, 204, 0.2);
+}
+
+
+/* ===========================================
+   WEEK 5 ADDITIONS
+   Auth header, account views
+   =========================================== */
+
+/* ── Header account area ─────────────────────── */
+.header-account {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+}
+
+.account-logout {
+  font-size: 0.78rem;
+  color: rgba(245,240,232,0.5);
+  border-left: 1px solid rgba(255,255,255,0.15);
+  padding-left: var(--space-sm);
+}
+
+.account-logout:hover,
+.account-logout:focus-visible {
+  color: #ff8888;
+}
+
+/* ── Update form sections ────────────────────── */
+.update-form-wrap {
+  background: var(--clr-off-white);
+  border: 1px solid var(--clr-border);
+  border-radius: var(--radius);
+  padding: var(--space-md);
+  margin-bottom: var(--space-md);
+}
+
+.form-subtitle {
+  font-family: var(--font-heading);
+  font-size: 1.1rem;
+  color: var(--clr-dark);
+  margin-bottom: var(--space-sm);
+  padding-bottom: 0.4rem;
+  border-bottom: 1px solid var(--clr-border);
+}
+
+/* ── Alt link below forms ────────────────────── */
+.form-alt-link {
+  margin-top: var(--space-sm);
+  font-size: 0.9rem;
+  color: var(--clr-text-muted);
+}
+
+.form-alt-link a {
+  color: var(--clr-teal-dark);
+  text-decoration: underline;
+}
+
+/* ── Management h3 for inventory link ───────── */
+.inv-management h3 {
+  font-family: var(--font-heading);
+  font-size: 1rem;
+  color: var(--clr-dark);
+  margin-top: var(--space-md);
+  margin-bottom: var(--space-sm);
 }
