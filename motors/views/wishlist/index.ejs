@@ -1,0 +1,59 @@
+<section class="wishlist-section">
+  <h1>My Wishlist</h1>
+
+  <% if (notice && notice.length > 0) { %>
+    <p class="notice <%= notice[0].includes('added') || notice[0].includes('removed') ? 'notice--success' : 'notice--error' %>">
+      <%= notice[0] %>
+    </p>
+  <% } %>
+
+  <% if (wishlistItems.length === 0) { %>
+    <div class="wishlist-empty">
+      <p>Your wishlist is empty.</p>
+      <p>Browse our <a href="/inv/type/1">inventory</a> and click "Save to Wishlist" on any vehicle to add it here.</p>
+    </div>
+  <% } else { %>
+    <p class="wishlist-count"><%= wishlistItems.length %> saved vehicle<%= wishlistItems.length !== 1 ? 's' : '' %></p>
+    <ul class="wishlist-grid" role="list">
+      <% wishlistItems.forEach(function(item) { %>
+      <li class="wishlist-card">
+        <a href="/inv/detail/<%= item.inv_id %>" class="wishlist-img-link">
+          <img
+            src="<%= item.inv_thumbnail %>"
+            alt="<%= item.inv_year %> <%= item.inv_make %> <%= item.inv_model %>"
+            class="wishlist-thumb"
+            loading="lazy"
+          />
+        </a>
+        <div class="wishlist-info">
+          <h2 class="wishlist-title">
+            <a href="/inv/detail/<%= item.inv_id %>">
+              <%= item.inv_year %> <%= item.inv_make %> <%= item.inv_model %>
+            </a>
+          </h2>
+          <p class="wishlist-meta"><%= item.classification_name %> &middot; <%= item.inv_color %></p>
+          <p class="wishlist-price">
+            $<%= new Intl.NumberFormat('en-US').format(item.inv_price) %>
+          </p>
+          <p class="wishlist-miles">
+            <%= new Intl.NumberFormat('en-US').format(item.inv_miles) %> miles
+          </p>
+          <p class="wishlist-saved">
+            Saved: <%= new Date(item.added_date).toLocaleDateString('en-US', {year:'numeric',month:'short',day:'numeric'}) %>
+          </p>
+          <form action="/wishlist/remove" method="post" class="wishlist-remove-form">
+            <input type="hidden" name="wishlist_id" value="<%= item.wishlist_id %>" />
+            <button type="submit" class="btn-remove" aria-label="Remove <%= item.inv_make %> <%= item.inv_model %> from wishlist">
+              &times; Remove
+            </button>
+          </form>
+        </div>
+      </li>
+      <% }) %>
+    </ul>
+  <% } %>
+
+  <div class="wishlist-nav">
+    <a href="/account/" class="btn-cancel">&larr; Back to Account</a>
+  </div>
+</section>

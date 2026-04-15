@@ -1,13 +1,33 @@
+-- =====================================================
+-- CSE Motors – Full Database Rebuild Script
+-- CSE 340 – Web Backend Development
+-- File: database/cse-motors-db.sql
+--
+-- Run this entire file at once in pgAdmin / SQLTools
+-- to fully restore the database from scratch.
+-- Order of execution:
+--   1. Create ENUM type
+--   2. Create tables (account, classification, inventory)
+--   3. Populate classification table
+--   4. Populate inventory table
+--   5. Query 4 from assignment2 (Hummer description fix)
+--   6. Query 6 from assignment2 (image path fix)
+-- =====================================================
 
--- STEP 1: Creating account_type ENUM
+
+-- -------------------------------------------------------
+-- STEP 1: Create account_type ENUM
+-- -------------------------------------------------------
 CREATE TYPE public.account_type AS ENUM (
   'Client',
   'Employee',
   'Admin'
 );
 
--- STEP 2: Creating Tables
 
+-- -------------------------------------------------------
+-- STEP 2: Create Tables
+-- -------------------------------------------------------
 
 -- account table
 CREATE TABLE public.account (
@@ -44,8 +64,9 @@ CREATE TABLE public.inventory (
 );
 
 
+-- -------------------------------------------------------
 -- STEP 3: Populate classification table
-
+-- -------------------------------------------------------
 INSERT INTO classification (classification_name)
 VALUES
   ('Custom'),
@@ -54,8 +75,10 @@ VALUES
   ('Truck'),
   ('Sedan');
 
--- STEP 4: Populate inventory table
 
+-- -------------------------------------------------------
+-- STEP 4: Populate inventory table
+-- -------------------------------------------------------
 INSERT INTO inventory (
   inv_make, inv_model, inv_year, inv_description,
   inv_image, inv_thumbnail,
@@ -123,9 +146,10 @@ VALUES
    27000, 3000, 'Silver', 5);
 
 
-
+-- -------------------------------------------------------
 -- STEP 5: Query 4 from assignment2.sql
-
+-- Fix GM Hummer description: "small interiors" → "a huge interior"
+-- -------------------------------------------------------
 UPDATE inventory
 SET inv_description = REPLACE(
   inv_description,
@@ -135,9 +159,30 @@ SET inv_description = REPLACE(
 WHERE inv_make = 'GM' AND inv_model = 'Hummer';
 
 
+-- -------------------------------------------------------
 -- STEP 6: Query 6 from assignment2.sql
-
+-- Update all image paths to include /vehicles/ subfolder
+-- Before: /images/a-car-name.jpg
+-- After:  /images/vehicles/a-car-name.jpg
+-- -------------------------------------------------------
 UPDATE inventory
 SET
   inv_image     = REPLACE(inv_image,     '/images/', '/images/vehicles/'),
   inv_thumbnail = REPLACE(inv_thumbnail, '/images/', '/images/vehicles/');
+
+
+-- -------------------------------------------------------
+-- WEEK 6: Wishlist table
+-- Stores saved vehicles per account
+-- -------------------------------------------------------
+CREATE TABLE IF NOT EXISTS public.wishlist (
+  wishlist_id  SERIAL PRIMARY KEY,
+  account_id   INT NOT NULL
+    REFERENCES public.account(account_id)
+    ON DELETE CASCADE ON UPDATE CASCADE,
+  inv_id       INT NOT NULL
+    REFERENCES public.inventory(inv_id)
+    ON DELETE CASCADE ON UPDATE CASCADE,
+  added_date   TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  UNIQUE(account_id, inv_id)
+);

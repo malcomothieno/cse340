@@ -1,4 +1,25 @@
 <section class="vehicle-detail-page">
   <h1><%= title %></h1>
+
+  <% if (notice && notice.length > 0) { %>
+    <p class="notice <%= notice[0].includes('added') || notice[0].includes('!') ? 'notice--success' : 'notice--error' %>">
+      <%= notice[0] %>
+    </p>
+  <% } %>
+
   <%- vehicleDetail %>
+
+  <div class="detail-actions">
+    <% if (locals.loggedin) { %>
+      <form action="/wishlist/add" method="post" class="wishlist-form">
+        <input type="hidden" name="inv_id" value="<%= invId %>" />
+        <button type="submit" class="btn-wishlist">&#9825; Save to Wishlist</button>
+      </form>
+      <a href="/wishlist" class="btn-cancel">View My Wishlist</a>
+    <% } else { %>
+      <p class="login-prompt">
+        <a href="/account/login">Log in</a> to save this vehicle to your wishlist.
+      </p>
+    <% } %>
+  </div>
 </section>

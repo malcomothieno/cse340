@@ -9,6 +9,7 @@ const utilities = require("./utilities")
 const baseController = require("./controllers/baseController")
 const inventoryRoute = require("./routes/inventoryRoute")
 const accountRoute = require("./routes/accountRoute")
+const wishlistRoute = require("./routes/wishlistRoute")
 
 const app = express()
 
@@ -52,6 +53,7 @@ app.use(express.static(path.join(__dirname, "public")))
 app.get("/", utilities.handleErrors(baseController.buildHome))
 app.use("/inv", inventoryRoute)
 app.use("/account", accountRoute)
+app.use("/wishlist", wishlistRoute)
 
 // 404 catch-all
 app.use(async (req, res, next) => {

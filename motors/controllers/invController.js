@@ -50,6 +50,7 @@ invCont.buildByInventoryId = utilities.handleErrors(
       title: vehicle.inv_year + " " + vehicle.inv_make + " " + vehicle.inv_model,
       nav,
       vehicleDetail,
+      invId: vehicle.inv_id,
     })
   }
 )
